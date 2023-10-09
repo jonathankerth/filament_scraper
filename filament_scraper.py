@@ -3,6 +3,7 @@ from flask_cors import CORS
 import requests
 from bs4 import BeautifulSoup
 import json
+import os
 
 app = Flask(__name__)
 CORS(app)  # This will enable CORS for all routes
@@ -44,7 +45,10 @@ def get_filament_data():
     return jsonify(data)
 
 if __name__ == "__main__":
+    # Get the port provided by Heroku or use 5000 if running locally
+    port = int(os.environ.get("PORT", 5000))
+    
     # Print a message indicating that the server is starting
     print("Starting Flask app...")
     
-    app.run(port=5000)  # This will start the Flask app on port 5000
+    app.run(host="0.0.0.0", port=port)
