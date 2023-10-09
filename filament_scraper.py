@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from flask_cors import CORS
 import requests
 from bs4 import BeautifulSoup
@@ -43,6 +43,18 @@ def get_filament_data():
     print("API accessed. Data fetched successfully.")
     
     return jsonify(data)
+
+# Add a route handler for the root URL '/'
+@app.route('/', methods=['GET'])
+def root():
+    # Return a simple message to indicate that the server is running
+    return "Server is running!"
+
+# Add a route handler for the 'favicon.ico' path
+@app.route('/favicon.ico', methods=['GET'])
+def favicon():
+    # Return an empty response for favicon requests
+    return '', 204
 
 if __name__ == "__main__":
     # Get the port provided by Heroku or use 5000 if running locally
