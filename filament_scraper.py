@@ -37,7 +37,14 @@ def get_filament_data():
     data = fetch_filament_data()
     if not data:
         return jsonify({"error": "Unable to fetch filament data"}), 500
+    
+    # Print a message to the console when the API is accessed
+    print("API accessed. Data fetched successfully.")
+    
     return jsonify(data)
 
 if __name__ == "__main__":
+    # Print a message indicating that the server is starting
+    print("Starting Flask app...")
+    
     app.run(port=5000)  # This will start the Flask app on port 5000
